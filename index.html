@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>MainCrafts Landing Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Welcome to MainCrafts Technology</h1>
+        <p>Java Full Stack Internship Project</p>
+    </header>
+
+    <section class="hero">
+        <h2>Build Your Future With Java Full Stack</h2>
+        <p>Learn frontend and backend development.</p>
+        <button>Get Started</button>
+    </section>
+    <section class="contact">
+        <h2>Contact Us</h2>
+        <form id="contactForm">
+            <input type="text"
+                   id="name"
+                   placeholder="Your Name"
+                   required>
+            <input type="email"
+                   id="email"
+                   placeholder="Your Email"
+                   required>
+
+            <textarea id="message"
+                      placeholder="Your Message"></textarea>
+            <button type="submit">
+                Send Message
+            </button>
+        </form>
+    </section>
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e){
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const email = document.getElementById("email").value;
+    const message = document.getElementById("message").value;
+ fetch("http://localhost:8080/contact", {
+
+    method: "POST",
+
+    headers: {
+        "Content-Type": "application/x-www-form-urlencoded"
+    },
+
+    body:
+    "name=" + name +
+    "&email=" + email +
+    "&message=" + message
+
+})
+    .then(response => response.text())
+    .then(data => {
+        alert(data);
+    });
+});
+</script>
+</body>
+</html>
